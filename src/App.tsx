@@ -111,37 +111,40 @@ export default function App() {
   }
 
   return (
-    <div style={{ background: '#0a0a0a', minHeight: '100vh', color: 'white', fontFamily: '-apple-system, sans-serif', paddingBottom: 80 }}>
+    <div style={{
+      background: '#0a0a0a',
+      backgroundImage: `
+        radial-gradient(ellipse at 0% 0%, rgba(255,80,0,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(255,60,0,0.06) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6a00' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+      `,
+      minHeight: '100vh', color: 'white',
+      fontFamily: '-apple-system, sans-serif', paddingBottom: 80
+    }}>
 
-                        {/* Hero */}
-      <div style={{ position: 'relative', overflow: 'hidden', padding: '52px 24px 40px', textAlign: 'center', minHeight: 200 }}>
+
+                              {/* Hero */}
+      <div style={{ position: 'relative', overflow: 'hidden', padding: '52px 24px 44px', textAlign: 'center' }}>
         
-        {/* Основной фон */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #1a0800 0%, #0a0a0a 100%)' }} />
-        
-        {/* Размытые пятна света */}
-        <div style={{ position: 'absolute', top: -40, left: -40, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,80,0,0.2)', filter: 'blur(60px)', zIndex: 1 }} />
-        <div style={{ position: 'absolute', top: -20, right: -40, width: 160, height: 160, borderRadius: '50%', background: 'rgba(255,140,0,0.15)', filter: 'blur(50px)', zIndex: 1 }} />
-        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: 300, height: 100, background: 'rgba(255,60,0,0.1)', filter: 'blur(40px)', zIndex: 1 }} />
+        {/* Световые пятна */}
+        <div style={{ position: 'absolute', top: -60, left: -60, width: 250, height: 250, borderRadius: '50%', background: 'rgba(255,80,0,0.18)', filter: 'blur(80px)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', top: -30, right: -60, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,140,0,0.12)', filter: 'blur(70px)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', bottom: -20, left: '30%', width: 200, height: 120, borderRadius: '50%', background: 'rgba(255,60,0,0.08)', filter: 'blur(50px)', zIndex: 0 }} />
 
         {/* Контент */}
-        <div style={{ position: 'relative', zIndex: 2 }}>
+        <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            style={{ color: '#ff6a00', fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 12px' }}
+            style={{ color: '#ff6a00', fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 14px' }}
           >⚡ Официальный магазин</motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            style={{
-              fontSize: 36, fontWeight: 900, margin: '0 0 6px', lineHeight: 1.1,
-              color: '#ffffff',
-              letterSpacing: 1,
-            }}
+            style={{ fontSize: 38, fontWeight: 900, margin: '0 0 6px', lineHeight: 1.1, color: '#ffffff', letterSpacing: 2 }}
           >SPLINTEL</motion.h1>
 
           <motion.h2
@@ -149,16 +152,16 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28 }}
             style={{
-              fontSize: 14, fontWeight: 700, margin: '0 0 20px',
+              fontSize: 13, fontWeight: 700, margin: '0 0 22px',
               background: 'linear-gradient(90deg, #ff6a00, #ffb347)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              letterSpacing: 3, textTransform: 'uppercase'
+              letterSpacing: 4, textTransform: 'uppercase'
             }}
           >SPORT NUTRITION</motion.h2>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.35 }}
             style={{ display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}
           >
@@ -173,6 +176,7 @@ export default function App() {
           </motion.div>
         </div>
       </div>
+
 
 
 
