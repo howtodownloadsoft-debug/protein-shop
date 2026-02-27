@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 import ksb80Img from './assets/ksb80.png'
+import caseinImg from './assets/casein.png'
+import eggproteinImg from './assets/eggprotein.png'
+import creatineImg from './assets/creatine.png'
+import gainerImg from './assets/gainer.png'
+import soyproteinImg from './assets/soyprotein.png'
 
 const MANAGER = 'https://t.me/Lockerrrr'
 const BOT_TOKEN = '8649361387:AAHvBO4QPAgfXKuLGt-P_k_pcViyPyESsaY'
@@ -20,7 +25,7 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 1, name: 'КСБ 80', type: 'Сывороточный протеин',
+    id: 1, name: 'КСБ 80', type: 'Сывороточный',
     image: ksb80Img,
     sizes: [{ label: '1 кг', price: 2990 }, { label: '3 кг', price: 7490 }, { label: '5 кг', price: 11990 }],
     desc: 'Концентрат сывороточного белка 80% на порцию. Идеален после тренировки для быстрого восстановления мышц.',
@@ -28,35 +33,40 @@ const products: Product[] = [
     reviews: [{ author: 'Алексей', text: 'Отличный протеин, размешивается хорошо 🔥', stars: 5 }, { author: 'Марина', text: 'Пью 3 месяца, результат заметен!', stars: 5 }],
   },
   {
-    id: 2, name: 'Казеин', type: 'Казеиновый протеин',
+    id: 2, name: 'Казеин', type: 'Казеиновый',
+    image: caseinImg,
     sizes: [{ label: '1 кг', price: 3290 }, { label: '3 кг', price: 8490 }, { label: '5 кг', price: 13490 }],
     desc: 'Медленный протеин на ночь. Питает мышцы 6-8 часов, защищает от катаболизма.',
     composition: 'Мицеллярный казеин, ароматизатор, сукралоза. Белок: 78г/100г. Жиры: 2г. Углеводы: 4г.',
     reviews: [{ author: 'Иван', text: 'Лучший казеин что пробовал!', stars: 5 }, { author: 'Сергей', text: 'Мышцы не теряются даже в дефиците', stars: 5 }],
   },
   {
-    id: 3, name: 'Яичный белок', type: 'Яичный протеин',
+    id: 3, name: 'Яичный белок', type: 'Яичный',
+    image: eggproteinImg,
     sizes: [{ label: '1 кг', price: 3490 }, { label: '3 кг', price: 8990 }, { label: '5 кг', price: 13990 }],
     desc: 'Протеин из яичного альбумина. Один из самых биодоступных белков. Подходит при непереносимости лактозы.',
     composition: 'Яичный альбумин, ароматизатор, стевия. Белок: 82г/100г. Жиры: 1г. Углеводы: 3г.',
     reviews: [{ author: 'Никита', text: 'Отличное качество, беру постоянно', stars: 5 }, { author: 'Ольга', text: 'Нет лактозы — то что надо!', stars: 5 }],
   },
   {
-    id: 4, name: 'Креатин', type: 'Креатин моногидрат',
+    id: 4, name: 'Креатин', type: 'Моногидрат',
+    image: creatineImg,
     sizes: [{ label: '300 г', price: 990 }, { label: '500 г', price: 1490 }, { label: '1 кг', price: 2490 }],
     desc: 'Чистый креатин моногидрат. Увеличивает силу и выносливость в силовых и спринте.',
     composition: 'Креатин моногидрат 100%. Без добавок и красителей.',
     reviews: [{ author: 'Владимир', text: 'Силовые выросли за месяц заметно', stars: 5 }, { author: 'Артём', text: 'Чистый продукт, цена огонь', stars: 5 }],
   },
   {
-    id: 5, name: 'Гейнер', type: 'Белково-углеводный комплекс',
+    id: 5, name: 'Гейнер', type: 'Белок + углеводы',
+    image: gainerImg,
     sizes: [{ label: '1 кг', price: 2290 }, { label: '3 кг', price: 5990 }, { label: '5 кг', price: 9490 }],
     desc: 'Для быстрого набора мышечной массы. Высококалорийный коктейль с оптимальным соотношением БЖУ.',
     composition: 'Мальтодекстрин, концентрат сывороточного белка, овсяная мука. Белок: 25г/100г. Углеводы: 60г/100г.',
     reviews: [{ author: 'Максим', text: 'За 2 месяца набрал 4 кг!', stars: 5 }, { author: 'Павел', text: 'Хорошо размешивается, не приторный', stars: 4 }],
   },
   {
-    id: 6, name: 'Соевый протеин', type: 'Растительный протеин',
+    id: 6, name: 'Соевый', type: 'Растительный',
+    image: soyproteinImg,
     sizes: [{ label: '1 кг', price: 2790 }, { label: '3 кг', price: 6990 }, { label: '5 кг', price: 10990 }],
     desc: 'Растительный протеин из сои. Полноценный аминокислотный профиль, подходит для веганов.',
     composition: 'Изолят соевого белка, ароматизатор, стевия. Белок: 85г/100г. Жиры: 1г. Углеводы: 5г.',
@@ -191,18 +201,24 @@ export default function App() {
 
                 {/* Шапка карточки */}
                 <motion.div whileTap={{ scale: 0.985 }} onClick={() => setSelected(isOpen ? null : p.id)}
-                  style={{ padding: '14px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
+                  style={{ padding: '14px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}>
                   <ProductImage image={p.image} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
-                    <div style={{ color: '#666', fontSize: 12, marginTop: 3 }}>{p.type}</div>
+                    <div style={{
+                      fontWeight: 700, fontSize: 15, color: '#fff',
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                    }}>{p.name}</div>
+                    <div style={{
+                      color: '#666', fontSize: 11, marginTop: 2,
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                    }}>{p.type}</div>
                   </div>
-                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                    <div style={{ fontWeight: 800, fontSize: 17, color: '#ff6a00' }}>{currentSize.price}₽</div>
+                  <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 4 }}>
+                    <div style={{ fontWeight: 800, fontSize: 16, color: '#ff6a00' }}>{currentSize.price}₽</div>
                     <div style={{ color: '#555', fontSize: 11, marginTop: 2 }}>{currentSize.label}</div>
                   </div>
                   <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}
-                    style={{ color: '#555', fontSize: 10, marginLeft: 4, flexShrink: 0 }}>▼</motion.span>
+                    style={{ color: '#555', fontSize: 10, marginLeft: 2, flexShrink: 0 }}>▼</motion.span>
                 </motion.div>
 
                 {/* Раскрытая часть */}
