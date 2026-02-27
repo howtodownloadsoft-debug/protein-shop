@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
@@ -222,7 +223,8 @@ export default function App() {
       })
       const data = await res.json()
       if (data.url && window.Telegram?.WebApp) {
-        window.Telegram.WebApp.openTelegramLink(data.url)
+        window.Telegram.WebApp.openLink(data.url)
+
       }
     } catch {
       alert('Ошибка создания счёта. Попробуй снова.')
