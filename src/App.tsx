@@ -7,20 +7,21 @@ import eggproteinImg from './assets/eggprotein.png'
 import creatineImg from './assets/creatine.png'
 import gainerImg from './assets/gainer.png'
 import soyproteinImg from './assets/soyprotein.png'
-// Разворачиваем на весь экран
-if (window.Telegram?.WebApp) {
-  window.Telegram.WebApp.expand()
-  window.Telegram.WebApp.setHeaderColor('#07080f')
-  window.Telegram.WebApp.setBackgroundColor('#07080f')
-}
 
 const MANAGER = 'https://t.me/Lockerrrr'
 const BOT_TOKEN = '8649361387:AAHvBO4QPAgfXKuLGt-P_k_pcViyPyESsaY'
 const ADMIN_ID = '7220667051'
 
-const BLUE = '#5b9cf6'
-const BLUE_DIM = 'rgba(91,156,246,0.12)'
-const BLUE_BORDER = 'rgba(91,156,246,0.25)'
+const BLUE = '#6aaeff'
+const BLUE_DIM = 'rgba(106,174,255,0.13)'
+const BLUE_BORDER = 'rgba(106,174,255,0.28)'
+const AMBER = '#f5a623'
+
+if (window.Telegram?.WebApp) {
+  window.Telegram.WebApp.expand()
+  window.Telegram.WebApp.setHeaderColor('#07080f')
+  window.Telegram.WebApp.setBackgroundColor('#07080f')
+}
 
 interface Product {
   id: number; name: string; type: string; image?: string
@@ -84,7 +85,7 @@ const ProductImage = ({ image }: { image?: string }) => (
       border: `1px solid ${BLUE_BORDER}`,
       overflow: 'hidden',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      boxShadow: `0 0 20px rgba(91,156,246,0.08)`,
+      boxShadow: `0 0 20px rgba(106,174,255,0.08)`,
     }}>
     {image ? (
       <img src={image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -197,7 +198,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            style={{ fontSize: 10, color: BLUE, fontWeight: 500, letterSpacing: 3, marginTop: 2, opacity: 0.8 }}>
+            style={{ fontSize: 10, color: BLUE, fontWeight: 500, letterSpacing: 3, marginTop: 2 }}>
             SPORT NUTRITION
           </motion.div>
         </div>
@@ -223,7 +224,8 @@ export default function App() {
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
         style={{
-          height: 1, background: `linear-gradient(90deg, transparent, ${BLUE}, transparent)`,
+          height: 1,
+          background: `linear-gradient(90deg, transparent, ${BLUE}, transparent)`,
           transformOrigin: 'left',
         }}
       />
@@ -234,7 +236,7 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          style={{ color: '#333', fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 16px' }}>
+          style={{ color: '#506080', fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 16px' }}>
           Каталог
         </motion.p>
 
@@ -255,13 +257,10 @@ export default function App() {
                   background: isOpen
                     ? 'linear-gradient(135deg, #0e1220, #0c1018)'
                     : 'linear-gradient(135deg, #0c0d14, #0a0b11)',
-                  borderRadius: 20,
-                  overflow: 'hidden',
-                  border: isOpen
-                    ? `1px solid ${BLUE_BORDER}`
-                    : '1px solid rgba(255,255,255,0.04)',
+                  borderRadius: 20, overflow: 'hidden',
+                  border: isOpen ? `1px solid ${BLUE_BORDER}` : '1px solid rgba(255,255,255,0.04)',
                   boxShadow: isOpen
-                    ? `0 0 40px rgba(91,156,246,0.08), inset 0 1px 0 rgba(91,156,246,0.06)`
+                    ? `0 0 40px rgba(106,174,255,0.08), inset 0 1px 0 rgba(106,174,255,0.06)`
                     : '0 2px 12px rgba(0,0,0,0.3)',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}>
@@ -275,25 +274,23 @@ export default function App() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
                       fontWeight: 700, fontSize: 15, color: '#f0f4ff',
-                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                      letterSpacing: 0.3,
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: 0.3,
                     }}>{p.name}</div>
                     <div style={{
-                      color: '#3d4a6a', fontSize: 11, marginTop: 3, fontWeight: 500,
-                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                      letterSpacing: 0.5,
+                      color: '#7a90b8', fontSize: 11, marginTop: 3, fontWeight: 500,
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: 0.5,
                     }}>{p.type}</div>
                   </div>
                   <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 4 }}>
-                    <div style={{ fontWeight: 800, fontSize: 16, color: BLUE }}>{currentSize.price}₽</div>
-                    <div style={{ color: '#2a3550', fontSize: 11, marginTop: 2 }}>{currentSize.label}</div>
+                    <div style={{ fontWeight: 800, fontSize: 16, color: AMBER }}>{currentSize.price}₽</div>
+                    <div style={{ color: '#506080', fontSize: 11, marginTop: 2 }}>{currentSize.label}</div>
                   </div>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.25, ease: 'easeInOut' }}
                     style={{ marginLeft: 4, flexShrink: 0 }}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path d="M3 5L7 9L11 5" stroke={isOpen ? BLUE : '#2a3550'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3 5L7 9L11 5" stroke={isOpen ? BLUE : '#506080'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </motion.div>
                 </motion.div>
@@ -307,7 +304,7 @@ export default function App() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                       style={{ overflow: 'hidden' }}>
-                      <div style={{ padding: '0 16px 18px', borderTop: '1px solid rgba(91,156,246,0.07)' }}>
+                      <div style={{ padding: '0 16px 18px', borderTop: '1px solid rgba(106,174,255,0.07)' }}>
 
                         {/* Фасовки */}
                         <div style={{ display: 'flex', gap: 8, marginTop: 16, marginBottom: 16 }}>
@@ -321,10 +318,10 @@ export default function App() {
                                 background: sizeIdx === idx
                                   ? `linear-gradient(135deg, ${BLUE}, #3b7de8)`
                                   : 'rgba(255,255,255,0.04)',
-                                color: sizeIdx === idx ? '#fff' : '#3d4a6a',
+                                color: sizeIdx === idx ? '#fff' : '#7a90b8',
                                 fontWeight: 700, fontSize: 12, lineHeight: 1.5,
                                 transition: 'all 0.2s',
-                                boxShadow: sizeIdx === idx ? `0 4px 16px rgba(91,156,246,0.3)` : 'none',
+                                boxShadow: sizeIdx === idx ? `0 4px 16px rgba(106,174,255,0.3)` : 'none',
                               }}>
                               {s.label}<br />
                               <span style={{ fontSize: 11, fontWeight: 500, opacity: 0.85 }}>{s.price}₽</span>
@@ -346,7 +343,7 @@ export default function App() {
                                 flex: 1, padding: '8px 4px', borderRadius: 9, border: 'none', cursor: 'pointer',
                                 fontSize: 11, fontWeight: 600, letterSpacing: 0.3,
                                 background: tab === t ? BLUE_DIM : 'transparent',
-                                color: tab === t ? BLUE : '#2a3550',
+                                color: tab === t ? BLUE : '#506080',
                                 transition: 'all 0.2s',
                                 boxShadow: tab === t ? `inset 0 0 0 1px ${BLUE_BORDER}` : 'none',
                               }}>
@@ -355,7 +352,7 @@ export default function App() {
                           ))}
                         </div>
 
-                        {/* Контент таба */}
+                        {/* Контент */}
                         <AnimatePresence mode="wait">
                           <motion.div key={tab}
                             initial={{ opacity: 0, y: 8 }}
@@ -364,10 +361,10 @@ export default function App() {
                             transition={{ duration: 0.18 }}
                             style={{ minHeight: 64, marginBottom: 18 }}>
                             {tab === 'desc' && (
-                              <p style={{ color: '#5a6a8a', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.desc}</p>
+                              <p style={{ color: '#8aa0c0', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.desc}</p>
                             )}
                             {tab === 'composition' && (
-                              <p style={{ color: '#5a6a8a', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.composition}</p>
+                              <p style={{ color: '#8aa0c0', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.composition}</p>
                             )}
                             {tab === 'reviews' && (
                               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -377,15 +374,14 @@ export default function App() {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: idx * 0.08 }}
                                     style={{
-                                      background: 'rgba(255,255,255,0.02)',
-                                      borderRadius: 12, padding: '12px 14px',
-                                      border: '1px solid rgba(255,255,255,0.04)',
+                                      background: 'rgba(255,255,255,0.02)', borderRadius: 12,
+                                      padding: '12px 14px', border: '1px solid rgba(255,255,255,0.04)',
                                     }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                                       <span style={{ fontWeight: 700, fontSize: 13, color: '#c8d8f0' }}>{r.author}</span>
-                                      <span style={{ fontSize: 11, color: BLUE, letterSpacing: 1 }}>{'★'.repeat(r.stars)}</span>
+                                      <span style={{ fontSize: 11, color: AMBER, letterSpacing: 1 }}>{'★'.repeat(r.stars)}</span>
                                     </div>
-                                    <p style={{ color: '#4a5a7a', fontSize: 13, margin: 0, lineHeight: 1.6 }}>{r.text}</p>
+                                    <p style={{ color: '#7a90b8', fontSize: 13, margin: 0, lineHeight: 1.6 }}>{r.text}</p>
                                   </motion.div>
                                 ))}
                               </div>
@@ -405,15 +401,13 @@ export default function App() {
                                 style={{
                                   flex: 1, display: 'flex', alignItems: 'center',
                                   justifyContent: 'space-between',
-                                  background: BLUE_DIM,
-                                  borderRadius: 14, padding: '10px 18px',
-                                  border: `1px solid ${BLUE_BORDER}`,
+                                  background: BLUE_DIM, borderRadius: 14,
+                                  padding: '10px 18px', border: `1px solid ${BLUE_BORDER}`,
                                 }}>
                                 <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(p.id, sizeIdx, -1)}
                                   style={{
-                                    background: 'rgba(91,156,246,0.2)', border: 'none', color: BLUE,
-                                    width: 32, height: 32, borderRadius: 10, fontSize: 18,
-                                    cursor: 'pointer', fontWeight: 900,
+                                    background: 'rgba(106,174,255,0.2)', border: 'none', color: BLUE,
+                                    width: 32, height: 32, borderRadius: 10, fontSize: 18, cursor: 'pointer', fontWeight: 900,
                                   }}>−</motion.button>
                                 <motion.span
                                   key={cartItem.qty}
@@ -425,8 +419,7 @@ export default function App() {
                                 <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(p.id, sizeIdx, 1)}
                                   style={{
                                     background: BLUE, border: 'none', color: '#fff',
-                                    width: 32, height: 32, borderRadius: 10, fontSize: 18,
-                                    cursor: 'pointer', fontWeight: 900,
+                                    width: 32, height: 32, borderRadius: 10, fontSize: 18, cursor: 'pointer', fontWeight: 900,
                                   }}>+</motion.button>
                               </motion.div>
                             ) : (
@@ -442,15 +435,13 @@ export default function App() {
                                   flex: 1, padding: '14px', borderRadius: 14, border: 'none', cursor: 'pointer',
                                   background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
                                   color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 0.5,
-                                  boxShadow: `0 6px 24px rgba(91,156,246,0.28)`,
+                                  boxShadow: `0 6px 24px rgba(106,174,255,0.28)`,
                                 }}>
                                 В корзину
                               </motion.button>
                             )}
                           </AnimatePresence>
-                          <motion.a
-                            whileTap={{ scale: 0.92 }}
-                            href={MANAGER}
+                          <motion.a whileTap={{ scale: 0.92 }} href={MANAGER}
                             style={{
                               width: 52, borderRadius: 14,
                               background: 'rgba(255,255,255,0.03)',
@@ -484,9 +475,8 @@ export default function App() {
               background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
               color: '#fff', border: 'none', padding: '18px 24px', borderRadius: 18,
               fontWeight: 700, fontSize: 15, cursor: 'pointer', zIndex: 50,
-              boxShadow: `0 8px 40px rgba(91,156,246,0.35)`,
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              letterSpacing: 0.3,
+              boxShadow: `0 8px 40px rgba(106,174,255,0.35)`,
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', letterSpacing: 0.3,
             }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <motion.span
@@ -528,15 +518,12 @@ export default function App() {
               transition={{ type: 'spring', damping: 32, stiffness: 320 }}
               style={{
                 background: 'linear-gradient(180deg, #0d0f1a 0%, #07080f 100%)',
-                borderRadius: '28px 28px 0 0',
-                width: '100%', maxHeight: '92vh', overflowY: 'auto',
-                border: `1px solid ${BLUE_BORDER}`,
-                borderBottom: 'none',
+                borderRadius: '28px 28px 0 0', width: '100%', maxHeight: '92vh', overflowY: 'auto',
+                border: `1px solid ${BLUE_BORDER}`, borderBottom: 'none',
               }}>
 
-              {/* Ручка */}
               <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 8 }}>
-                <div style={{ width: 36, height: 4, background: 'rgba(91,156,246,0.2)', borderRadius: 2 }} />
+                <div style={{ width: 36, height: 4, background: 'rgba(106,174,255,0.2)', borderRadius: 2 }} />
               </div>
 
               <div style={{ padding: '8px 20px 52px' }}>
@@ -551,13 +538,13 @@ export default function App() {
                       transition={{ type: 'spring', stiffness: 180, damping: 14 }}
                       style={{ fontSize: 64, marginBottom: 20 }}>✅</motion.div>
                     <h2 style={{ margin: '0 0 10px', fontSize: 22, fontWeight: 800, color: '#f0f4ff' }}>Заказ принят</h2>
-                    <p style={{ color: '#3d4a6a', fontSize: 14, lineHeight: 1.7, margin: '0 0 32px' }}>Менеджер свяжется с тобой в Telegram в ближайшее время</p>
+                    <p style={{ color: '#7a90b8', fontSize: 14, lineHeight: 1.7, margin: '0 0 32px' }}>Менеджер свяжется с тобой в Telegram в ближайшее время</p>
                     <motion.button whileTap={{ scale: 0.97 }} onClick={() => setShowCart(false)}
                       style={{
                         background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
                         color: '#fff', border: 'none', padding: '15px 48px',
                         borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer',
-                        boxShadow: `0 4px 20px rgba(91,156,246,0.3)`,
+                        boxShadow: `0 4px 20px rgba(106,174,255,0.3)`,
                       }}>
                       Закрыть
                     </motion.button>
@@ -566,7 +553,6 @@ export default function App() {
                   <>
                     <h2 style={{ margin: '0 0 20px', fontSize: 20, fontWeight: 800, color: '#f0f4ff', letterSpacing: 0.3 }}>Корзина</h2>
 
-                    {/* Товары */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
                       {cart.map((item, idx) => {
                         const p = products.find(x => x.id === item.productId)!
@@ -583,16 +569,16 @@ export default function App() {
                             }}>
                             <div style={{ flex: 1, minWidth: 0 }}>
                               <div style={{ fontWeight: 700, fontSize: 14, color: '#d0dcf0' }}>{p.name}</div>
-                              <div style={{ color: '#2a3550', fontSize: 12, marginTop: 2 }}>{size.label}</div>
+                              <div style={{ color: '#506080', fontSize: 12, marginTop: 2 }}>{size.label}</div>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                               <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(item.productId, item.sizeIdx, -1)}
-                                style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: '#aaa', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>−</motion.button>
+                                style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: '#8aa0c0', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>−</motion.button>
                               <span style={{ fontWeight: 800, fontSize: 14, minWidth: 16, textAlign: 'center', color: '#fff' }}>{item.qty}</span>
                               <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(item.productId, item.sizeIdx, 1)}
                                 style={{ background: BLUE, border: 'none', color: '#fff', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>+</motion.button>
                             </div>
-                            <span style={{ fontWeight: 800, fontSize: 14, color: BLUE, minWidth: 64, textAlign: 'right' }}>{size.price * item.qty}₽</span>
+                            <span style={{ fontWeight: 800, fontSize: 14, color: AMBER, minWidth: 64, textAlign: 'right' }}>{size.price * item.qty}₽</span>
                           </motion.div>
                         )
                       })}
@@ -603,14 +589,14 @@ export default function App() {
                       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
                       style={{
                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                        padding: '16px 0', borderTop: `1px solid rgba(91,156,246,0.08)`, marginBottom: 20,
+                        padding: '16px 0', borderTop: `1px solid rgba(106,174,255,0.08)`, marginBottom: 20,
                       }}>
-                      <span style={{ color: '#3d4a6a', fontSize: 14, fontWeight: 500 }}>Итого</span>
+                      <span style={{ color: '#7a90b8', fontSize: 14, fontWeight: 500 }}>Итого</span>
                       <motion.span
                         key={cartTotal}
                         initial={{ opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        style={{ fontWeight: 900, fontSize: 24, color: BLUE }}>
+                        style={{ fontWeight: 900, fontSize: 24, color: AMBER }}>
                         {cartTotal}₽
                       </motion.span>
                     </motion.div>
@@ -647,7 +633,7 @@ export default function App() {
                             border: opt.active ? `1.5px solid ${opt.border}` : '1px solid rgba(255,255,255,0.05)',
                             fontWeight: 700, fontSize: 13, lineHeight: 1.6,
                             background: opt.active ? opt.bg : 'rgba(255,255,255,0.02)',
-                            color: opt.active ? opt.color : '#2a3550',
+                            color: opt.active ? opt.color : '#7a90b8',
                             transition: 'all 0.2s',
                           }}>
                           {opt.label}<br /><span style={{ fontSize: 11, fontWeight: 500 }}>{opt.sub}</span>
@@ -663,12 +649,11 @@ export default function App() {
                       style={{
                         width: '100%',
                         background: loading ? 'rgba(255,255,255,0.04)' : `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
-                        color: loading ? '#2a3550' : '#fff',
-                        border: 'none', padding: '18px',
-                        borderRadius: 16, fontWeight: 700, fontSize: 16,
-                        cursor: loading ? 'default' : 'pointer',
+                        color: loading ? '#506080' : '#fff',
+                        border: 'none', padding: '18px', borderRadius: 16,
+                        fontWeight: 700, fontSize: 16, cursor: loading ? 'default' : 'pointer',
                         letterSpacing: 0.4,
-                        boxShadow: loading ? 'none' : `0 8px 32px rgba(91,156,246,0.32)`,
+                        boxShadow: loading ? 'none' : `0 8px 32px rgba(106,174,255,0.32)`,
                         transition: 'all 0.3s',
                       }}>
                       {loading ? 'Отправка...' : 'Оформить заказ →'}
