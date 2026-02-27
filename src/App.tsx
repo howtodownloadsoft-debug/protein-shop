@@ -113,27 +113,69 @@ export default function App() {
   return (
     <div style={{ background: '#0a0a0a', minHeight: '100vh', color: 'white', fontFamily: '-apple-system, sans-serif', paddingBottom: 80 }}>
 
-      {/* Hero */}
-      <div style={{ position: 'relative', overflow: 'hidden', padding: '50px 20px 40px', textAlign: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #1a0a00 0%, #2d0a00 40%, #1a0500 100%)', zIndex: 0 }} />
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,80,0,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,140,0,0.1) 0%, transparent 40%)', zIndex: 1 }} />
+                        {/* Hero */}
+      <div style={{ position: 'relative', overflow: 'hidden', padding: '52px 24px 40px', textAlign: 'center', minHeight: 200 }}>
+        
+        {/* Основной фон */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, #1a0800 0%, #0a0a0a 100%)' }} />
+        
+        {/* Размытые пятна света */}
+        <div style={{ position: 'absolute', top: -40, left: -40, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,80,0,0.2)', filter: 'blur(60px)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', top: -20, right: -40, width: 160, height: 160, borderRadius: '50%', background: 'rgba(255,140,0,0.15)', filter: 'blur(50px)', zIndex: 1 }} />
+        <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: 300, height: 100, background: 'rgba(255,60,0,0.1)', filter: 'blur(40px)', zIndex: 1 }} />
+
+        {/* Контент */}
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <motion.div
-            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-            style={{ fontSize: 60, marginBottom: 12, display: 'inline-block' }}
-          >🔥</motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            style={{ color: '#ff6a00', fontSize: 11, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 12px' }}
+          >⚡ Официальный магазин</motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            style={{ fontSize: 32, fontWeight: 900, margin: '0 0 6px', background: 'linear-gradient(90deg, #ff6a00, #ffb347)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: 2 }}
-          >SPLINTEL SHOP</motion.h1>
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            style={{ color: '#ff8c42', fontSize: 13, margin: 0, letterSpacing: 1 }}>
-            💪 СПОРТИВНОЕ ПИТАНИЕ · БЫСТРАЯ ДОСТАВКА
-          </motion.p>
+            transition={{ delay: 0.2 }}
+            style={{
+              fontSize: 36, fontWeight: 900, margin: '0 0 6px', lineHeight: 1.1,
+              color: '#ffffff',
+              letterSpacing: 1,
+            }}
+          >SPLINTEL</motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.28 }}
+            style={{
+              fontSize: 14, fontWeight: 700, margin: '0 0 20px',
+              background: 'linear-gradient(90deg, #ff6a00, #ffb347)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+              letterSpacing: 3, textTransform: 'uppercase'
+            }}
+          >SPORT NUTRITION</motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            style={{ display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap' }}
+          >
+            {['💪 Качество', '🚀 Доставка по РФ', '⭐ Проверено'].map((tag, i) => (
+              <span key={i} style={{
+                background: 'rgba(255,106,0,0.1)',
+                border: '1px solid rgba(255,106,0,0.25)',
+                color: '#ff9240', padding: '5px 14px',
+                borderRadius: 20, fontSize: 12, fontWeight: 600
+              }}>{tag}</span>
+            ))}
+          </motion.div>
         </div>
       </div>
+
+
+
 
       {/* Products */}
       <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
