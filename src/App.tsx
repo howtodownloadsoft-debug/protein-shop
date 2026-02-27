@@ -1,14 +1,27 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
+import ksb80Img from './assets/ksb80.png'
 
 const MANAGER = 'https://t.me/Lockerrrr'
 const BOT_TOKEN = '8649361387:AAHvBO4QPAgfXKuLGt-P_k_pcViyPyESsaY'
 const ADMIN_ID = '7220667051'
 
-const products = [
+interface Product {
+  id: number
+  name: string
+  type: string
+  image?: string
+  sizes: { label: string; price: number }[]
+  desc: string
+  composition: string
+  reviews: { author: string; text: string; stars: number }[]
+}
+
+const products: Product[] = [
   {
     id: 1, name: 'КСБ 80', type: 'Сывороточный протеин',
+    image: ksb80Img,
     sizes: [{ label: '1 кг', price: 2990 }, { label: '3 кг', price: 7490 }, { label: '5 кг', price: 11990 }],
     desc: 'Концентрат сывороточного белка 80% на порцию. Идеален после тренировки для быстрого восстановления мышц.',
     composition: 'Концентрат сывороточного белка, какао, ароматизатор, стевия. Белок: 80г/100г. Жиры: 4г. Углеводы: 6г.',
@@ -51,24 +64,26 @@ const products = [
   },
 ]
 
-// Заглушки-банки в SVG (потом заменишь на реальные фото)
-const ProductImage = () => (
+const ProductImage = ({ image }: { image?: string }) => (
   <div style={{
     width: 56, height: 56, borderRadius: 14, flexShrink: 0,
-    background: 'linear-gradient(135deg, #1a1a1a, #222)',
+    background: '#1a1a1a',
     border: '1px solid rgba(255,255,255,0.06)',
-    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-    overflow: 'hidden', position: 'relative',
+    overflow: 'hidden',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
   }}>
-    {/* Банка SVG */}
-    <svg width="32" height="38" viewBox="0 0 32 38" fill="none">
-      <rect x="6" y="6" width="20" height="28" rx="4" fill="#222"/>
-      <rect x="6" y="6" width="20" height="28" rx="4" stroke="rgba(255,106,0,0.5)" strokeWidth="1"/>
-      <rect x="4" y="4" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
-      <rect x="4" y="28" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
-      <rect x="8" y="13" width="16" height="14" rx="2" fill="rgba(255,106,0,0.12)"/>
-      <text x="16" y="22" textAnchor="middle" fill="#ff6a00" fontSize="5" fontWeight="bold" fontFamily="sans-serif">SPL</text>
-    </svg>
+    {image ? (
+      <img src={image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    ) : (
+      <svg width="32" height="38" viewBox="0 0 32 38" fill="none">
+        <rect x="6" y="6" width="20" height="28" rx="4" fill="#222"/>
+        <rect x="6" y="6" width="20" height="28" rx="4" stroke="rgba(255,106,0,0.5)" strokeWidth="1"/>
+        <rect x="4" y="4" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
+        <rect x="4" y="28" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
+        <rect x="8" y="13" width="16" height="14" rx="2" fill="rgba(255,106,0,0.12)"/>
+        <text x="16" y="22" textAnchor="middle" fill="#ff6a00" fontSize="5" fontWeight="bold" fontFamily="sans-serif">SPL</text>
+      </svg>
+    )}
   </div>
 )
 
@@ -177,7 +192,7 @@ export default function App() {
                 {/* Шапка карточки */}
                 <motion.div whileTap={{ scale: 0.985 }} onClick={() => setSelected(isOpen ? null : p.id)}
                   style={{ padding: '14px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
-                  <ProductImage />
+                  <ProductImage image={p.image} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 700, fontSize: 16, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
                     <div style={{ color: '#666', fontSize: 12, marginTop: 3 }}>{p.type}</div>
@@ -219,7 +234,7 @@ export default function App() {
                           ))}
                         </div>
 
-                        {/* Segmented control — табы */}
+                        {/* Табы */}
                         <div style={{ display: 'flex', background: '#111', borderRadius: 12, padding: 3, marginBottom: 14 }}>
                           {(['desc', 'composition', 'reviews'] as Tab[]).map(t => (
                             <button key={t} onClick={() => setTabs(prev => ({ ...prev, [p.id]: t }))}
@@ -329,7 +344,6 @@ export default function App() {
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               style={{ background: '#111', borderRadius: '24px 24px 0 0', width: '100%', maxHeight: '92vh', overflowY: 'auto' }}>
 
-              {/* Ручка */}
               <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 10, paddingBottom: 6 }}>
                 <div style={{ width: 36, height: 4, background: '#2a2a2a', borderRadius: 2 }} />
               </div>
@@ -350,7 +364,6 @@ export default function App() {
                   <>
                     <h2 style={{ margin: '0 0 18px', fontSize: 20, fontWeight: 900 }}>Корзина</h2>
 
-                    {/* Товары */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
                       {cart.map(item => {
                         const p = products.find(x => x.id === item.productId)!
@@ -375,34 +388,33 @@ export default function App() {
                       })}
                     </div>
 
-                    {/* Итого */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', borderTop: '1px solid rgba(255,255,255,0.06)', marginBottom: 18 }}>
                       <span style={{ color: '#888', fontSize: 15 }}>Итого</span>
                       <span style={{ fontWeight: 900, fontSize: 22, color: '#ff6a00' }}>{cartTotal}₽</span>
                     </div>
 
-                    {/* Форма */}
-                    <input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                    <input value={form.name} onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="Твоё имя" style={inputStyle} />
-                    <input value={form.city} onChange={e => setForm(p => ({ ...p, city: e.target.value }))}
+                    <input value={form.city} onChange={e => setForm(prev => ({ ...prev, city: e.target.value }))}
                       placeholder="Город доставки" style={inputStyle} />
-                    <input value={form.username} onChange={e => setForm(p => ({ ...p, username: e.target.value }))}
+                    <input value={form.username} onChange={e => setForm(prev => ({ ...prev, username: e.target.value }))}
                       placeholder="Username в Telegram (без @)" style={{ ...inputStyle, marginBottom: 16 }} />
 
-                    {/* Оплата */}
                     <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(p => ({ ...p, payment: 'manager' }))}
+                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(prev => ({ ...prev, payment: 'manager' }))}
                         style={{
-                          flex: 1, padding: '13px 8px', borderRadius: 14, border: form.payment === 'manager' ? '1.5px solid #ff6a00' : '1px solid rgba(255,255,255,0.07)',
+                          flex: 1, padding: '13px 8px', borderRadius: 14,
+                          border: form.payment === 'manager' ? '1.5px solid #ff6a00' : '1px solid rgba(255,255,255,0.07)',
                           cursor: 'pointer', fontWeight: 700, fontSize: 12, lineHeight: 1.6,
                           background: form.payment === 'manager' ? 'rgba(255,106,0,0.12)' : '#1a1a1a',
                           color: form.payment === 'manager' ? '#ff6a00' : '#555',
                         }}>
                         💳 Через менеджера<br /><span style={{ fontSize: 11 }}>{cartTotal}₽</span>
                       </motion.button>
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(p => ({ ...p, payment: 'stars' }))}
+                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(prev => ({ ...prev, payment: 'stars' }))}
                         style={{
-                          flex: 1, padding: '13px 8px', borderRadius: 14, border: form.payment === 'stars' ? '1.5px solid #a78bfa' : '1px solid rgba(255,255,255,0.07)',
+                          flex: 1, padding: '13px 8px', borderRadius: 14,
+                          border: form.payment === 'stars' ? '1.5px solid #a78bfa' : '1px solid rgba(255,255,255,0.07)',
                           cursor: 'pointer', fontWeight: 700, fontSize: 12, lineHeight: 1.6,
                           background: form.payment === 'stars' ? 'rgba(124,58,237,0.15)' : '#1a1a1a',
                           color: form.payment === 'stars' ? '#a78bfa' : '#555',
