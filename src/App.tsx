@@ -24,56 +24,76 @@ if (window.Telegram?.WebApp) {
 }
 
 interface Product {
-  id: number; name: string; type: string; image?: string
+  id: number; name: string; type: string; subtitle: string; image?: string
   sizes: { label: string; price: number }[]
-  desc: string; composition: string
+  desc: string
+  ingredients: string
+  macros: { protein: number; fat: number; carbs: number }
   reviews: { author: string; text: string; stars: number }[]
 }
 
 const products: Product[] = [
   {
-    id: 1, name: 'КСБ 80', type: 'Сывороточный', image: ksb80Img,
+    id: 1, name: 'КСБ 80', type: 'Сывороточный', subtitle: 'Быстрый рост и восстановление', image: ksb80Img,
     sizes: [{ label: '1 кг', price: 2990 }, { label: '3 кг', price: 7490 }, { label: '5 кг', price: 11990 }],
     desc: 'Концентрат сывороточного белка 80% на порцию. Идеален после тренировки для быстрого восстановления мышц.',
-    composition: 'Концентрат сывороточного белка, какао, ароматизатор, стевия. Белок: 80г/100г. Жиры: 4г. Углеводы: 6г.',
+    ingredients: 'Концентрат сывороточного белка, какао, ароматизатор, стевия.',
+    macros: { protein: 80, fat: 4, carbs: 6 },
     reviews: [{ author: 'Алексей', text: 'Отличный протеин, размешивается хорошо 🔥', stars: 5 }, { author: 'Марина', text: 'Пью 3 месяца, результат заметен!', stars: 5 }],
   },
   {
-    id: 2, name: 'Казеин', type: 'Казеиновый', image: caseinImg,
+    id: 2, name: 'Казеин', type: 'Казеиновый', subtitle: 'Питание мышц на ночь до 8 часов', image: caseinImg,
     sizes: [{ label: '1 кг', price: 3290 }, { label: '3 кг', price: 8490 }, { label: '5 кг', price: 13490 }],
     desc: 'Медленный протеин на ночь. Питает мышцы 6-8 часов, защищает от катаболизма.',
-    composition: 'Мицеллярный казеин, ароматизатор, сукралоза. Белок: 78г/100г. Жиры: 2г. Углеводы: 4г.',
+    ingredients: 'Мицеллярный казеин, ароматизатор, сукралоза.',
+    macros: { protein: 78, fat: 2, carbs: 4 },
     reviews: [{ author: 'Иван', text: 'Лучший казеин что пробовал!', stars: 5 }, { author: 'Сергей', text: 'Мышцы не теряются даже в дефиците', stars: 5 }],
   },
   {
-    id: 3, name: 'Яичный белок', type: 'Яичный', image: eggproteinImg,
+    id: 3, name: 'Яичный белок', type: 'Яичный', subtitle: '100% усвояемость, без лактозы', image: eggproteinImg,
     sizes: [{ label: '1 кг', price: 3490 }, { label: '3 кг', price: 8990 }, { label: '5 кг', price: 13990 }],
     desc: 'Протеин из яичного альбумина. Один из самых биодоступных белков. Подходит при непереносимости лактозы.',
-    composition: 'Яичный альбумин, ароматизатор, стевия. Белок: 82г/100г. Жиры: 1г. Углеводы: 3г.',
+    ingredients: 'Яичный альбумин, ароматизатор, стевия.',
+    macros: { protein: 82, fat: 1, carbs: 3 },
     reviews: [{ author: 'Никита', text: 'Отличное качество, беру постоянно', stars: 5 }, { author: 'Ольга', text: 'Нет лактозы — то что надо!', stars: 5 }],
   },
   {
-    id: 4, name: 'Креатин', type: 'Моногидрат', image: creatineImg,
+    id: 4, name: 'Креатин', type: 'Моногидрат', subtitle: 'Взрывная сила и выносливость', image: creatineImg,
     sizes: [{ label: '300 г', price: 990 }, { label: '500 г', price: 1490 }, { label: '1 кг', price: 2490 }],
     desc: 'Чистый креатин моногидрат. Увеличивает силу и выносливость в силовых и спринте.',
-    composition: 'Креатин моногидрат 100%. Без добавок и красителей.',
+    ingredients: 'Креатин моногидрат 100%. Без добавок и красителей.',
+    macros: { protein: 0, fat: 0, carbs: 0 },
     reviews: [{ author: 'Владимир', text: 'Силовые выросли за месяц заметно', stars: 5 }, { author: 'Артём', text: 'Чистый продукт, цена огонь', stars: 5 }],
   },
   {
-    id: 5, name: 'Гейнер', type: 'Белок + углеводы', image: gainerImg,
+    id: 5, name: 'Гейнер', type: 'Белок + углеводы', subtitle: 'Мощный заряд калорий и белка', image: gainerImg,
     sizes: [{ label: '1 кг', price: 2290 }, { label: '3 кг', price: 5990 }, { label: '5 кг', price: 9490 }],
     desc: 'Для быстрого набора мышечной массы. Высококалорийный коктейль с оптимальным соотношением БЖУ.',
-    composition: 'Мальтодекстрин, концентрат сывороточного белка, овсяная мука. Белок: 25г/100г. Углеводы: 60г/100г.',
+    ingredients: 'Мальтодекстрин, концентрат сывороточного белка, овсяная мука.',
+    macros: { protein: 25, fat: 3, carbs: 60 },
     reviews: [{ author: 'Максим', text: 'За 2 месяца набрал 4 кг!', stars: 5 }, { author: 'Павел', text: 'Хорошо размешивается, не приторный', stars: 4 }],
   },
   {
-    id: 6, name: 'Соевый', type: 'Растительный', image: soyproteinImg,
+    id: 6, name: 'Соевый', type: 'Растительный', subtitle: 'Идеально для веганов и в пост', image: soyproteinImg,
     sizes: [{ label: '1 кг', price: 2790 }, { label: '3 кг', price: 6990 }, { label: '5 кг', price: 10990 }],
     desc: 'Растительный протеин из сои. Полноценный аминокислотный профиль, подходит для веганов.',
-    composition: 'Изолят соевого белка, ароматизатор, стевия. Белок: 85г/100г. Жиры: 1г. Углеводы: 5г.',
+    ingredients: 'Изолят соевого белка, ароматизатор, стевия.',
+    macros: { protein: 85, fat: 1, carbs: 5 },
     reviews: [{ author: 'Анна', text: 'Отличная альтернатива молочному!', stars: 5 }, { author: 'Кирилл', text: 'Беру для разнообразия, качество хорошее', stars: 4 }],
   },
 ]
+
+const MacroRow = ({ label, value, unit = 'г' }: { label: string; value: number; unit?: string }) => (
+  <div style={{
+    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+    padding: '8px 12px', borderRadius: 10,
+    background: 'rgba(255,255,255,0.02)',
+    border: '1px solid rgba(255,255,255,0.04)',
+  }}>
+    <span style={{ color: '#8aa0c0', fontSize: 13, fontWeight: 500 }}>{label}</span>
+    <span style={{ color: '#f0f4ff', fontSize: 14, fontWeight: 700 }}>{value} {unit}<span style={{ color: '#506080', fontSize: 11, fontWeight: 400 }}> / 100г</span></span>
+  </div>
+)
 
 const ProductImage = ({ image }: { image?: string }) => (
   <motion.div
@@ -209,10 +229,10 @@ export default function App() {
           style={{ display: 'flex', gap: 6 }}>
           {['Качество', 'Доставка РФ'].map((t, i) => (
             <span key={i} style={{
-              background: BLUE_DIM,
-              border: `1px solid ${BLUE_BORDER}`,
-              color: '#7db5ff', padding: '4px 10px',
-              borderRadius: 20, fontSize: 10, fontWeight: 600,
+              background: 'rgba(245,166,35,0.08)',
+              border: `1px solid rgba(245,166,35,0.35)`,
+              color: '#f5c76a',
+              padding: '4px 10px', borderRadius: 20, fontSize: 10, fontWeight: 600,
             }}>{t}</span>
           ))}
         </motion.div>
@@ -236,7 +256,7 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          style={{ color: '#506080', fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 16px' }}>
+          style={{ color: '#7a90b8', fontSize: 10, fontWeight: 700, letterSpacing: 5, textTransform: 'uppercase', margin: '0 0 16px' }}>
           Каталог
         </motion.p>
 
@@ -255,13 +275,13 @@ export default function App() {
                 transition={{ delay: i * 0.07, type: 'spring', stiffness: 200, damping: 20 }}
                 style={{
                   background: isOpen
-                    ? 'linear-gradient(135deg, #0e1220, #0c1018)'
-                    : 'linear-gradient(135deg, #0c0d14, #0a0b11)',
+                    ? 'linear-gradient(135deg, #131525, #0f1120)'
+                    : 'linear-gradient(135deg, #10111e, #0d0e1a)',
                   borderRadius: 20, overflow: 'hidden',
-                  border: isOpen ? `1px solid ${BLUE_BORDER}` : '1px solid rgba(255,255,255,0.04)',
+                  border: isOpen ? `1px solid ${BLUE_BORDER}` : '1px solid rgba(255,255,255,0.07)',
                   boxShadow: isOpen
                     ? `0 0 40px rgba(106,174,255,0.08), inset 0 1px 0 rgba(106,174,255,0.06)`
-                    : '0 2px 12px rgba(0,0,0,0.3)',
+                    : '0 2px 16px rgba(0,0,0,0.4)',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}>
 
@@ -277,9 +297,10 @@ export default function App() {
                       overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: 0.3,
                     }}>{p.name}</div>
                     <div style={{
-                      color: '#7a90b8', fontSize: 11, marginTop: 3, fontWeight: 500,
-                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', letterSpacing: 0.5,
-                    }}>{p.type}</div>
+                      color: '#9ab0cc', fontSize: 11, marginTop: 3, fontWeight: 400,
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      fontStyle: 'italic',
+                    }}>{p.subtitle}</div>
                   </div>
                   <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 4 }}>
                     <div style={{ fontWeight: 800, fontSize: 16, color: AMBER }}>{currentSize.price}₽</div>
@@ -317,7 +338,7 @@ export default function App() {
                                 flex: 1, padding: '10px 4px', borderRadius: 12, border: 'none', cursor: 'pointer',
                                 background: sizeIdx === idx
                                   ? `linear-gradient(135deg, ${BLUE}, #3b7de8)`
-                                  : 'rgba(255,255,255,0.04)',
+                                  : 'rgba(255,255,255,0.05)',
                                 color: sizeIdx === idx ? '#fff' : '#7a90b8',
                                 fontWeight: 700, fontSize: 12, lineHeight: 1.5,
                                 transition: 'all 0.2s',
@@ -331,21 +352,22 @@ export default function App() {
 
                         {/* Табы */}
                         <div style={{
-                          display: 'flex', background: 'rgba(255,255,255,0.03)',
+                          display: 'flex',
+                          background: 'rgba(255,255,255,0.03)',
                           borderRadius: 12, padding: 3, marginBottom: 16,
-                          border: '1px solid rgba(255,255,255,0.04)',
+                          border: '1px solid rgba(255,255,255,0.05)',
                         }}>
                           {(['desc', 'composition', 'reviews'] as Tab[]).map(t => (
                             <motion.button key={t}
                               whileTap={{ scale: 0.97 }}
                               onClick={() => setTabs(prev => ({ ...prev, [p.id]: t }))}
                               style={{
-                                flex: 1, padding: '8px 4px', borderRadius: 9, border: 'none', cursor: 'pointer',
-                                fontSize: 11, fontWeight: 600, letterSpacing: 0.3,
-                                background: tab === t ? BLUE_DIM : 'transparent',
-                                color: tab === t ? BLUE : '#506080',
+                                flex: 1, padding: '9px 4px', borderRadius: 9, border: 'none', cursor: 'pointer',
+                                fontSize: 11, fontWeight: 700, letterSpacing: 0.3,
+                                background: tab === t ? 'rgba(255,255,255,0.10)' : 'transparent',
+                                color: tab === t ? '#fff' : '#506080',
                                 transition: 'all 0.2s',
-                                boxShadow: tab === t ? `inset 0 0 0 1px ${BLUE_BORDER}` : 'none',
+                                boxShadow: tab === t ? `0 1px 4px rgba(0,0,0,0.3)` : 'none',
                               }}>
                               {t === 'desc' ? 'Описание' : t === 'composition' ? 'Состав' : 'Отзывы'}
                             </motion.button>
@@ -360,12 +382,35 @@ export default function App() {
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.18 }}
                             style={{ minHeight: 64, marginBottom: 18 }}>
+
                             {tab === 'desc' && (
                               <p style={{ color: '#8aa0c0', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.desc}</p>
                             )}
+
                             {tab === 'composition' && (
-                              <p style={{ color: '#8aa0c0', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.composition}</p>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                <p style={{ color: '#8aa0c0', fontSize: 13, margin: '0 0 10px', lineHeight: 1.6 }}>
+                                  {p.ingredients}
+                                </p>
+                                {p.macros.protein > 0 ? (
+                                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                                    <MacroRow label="Белки" value={p.macros.protein} />
+                                    <MacroRow label="Жиры" value={p.macros.fat} />
+                                    <MacroRow label="Углеводы" value={p.macros.carbs} />
+                                  </div>
+                                ) : (
+                                  <div style={{
+                                    padding: '10px 14px', borderRadius: 10,
+                                    background: 'rgba(106,174,255,0.06)',
+                                    border: `1px solid ${BLUE_BORDER}`,
+                                    color: BLUE, fontSize: 13, fontWeight: 600,
+                                  }}>
+                                    100% чистый продукт — без углеводов и жиров
+                                  </div>
+                                )}
+                              </div>
                             )}
+
                             {tab === 'reviews' && (
                               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {p.reviews.map((r, idx) => (
