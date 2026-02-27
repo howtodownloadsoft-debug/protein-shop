@@ -4,8 +4,24 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
-  background: #0f0f0f;
+html {
+  background: #0a0a0a !important;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #0a0a0a !important;
   min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  background: #0a0a0a;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
 }
