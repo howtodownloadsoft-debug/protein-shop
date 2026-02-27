@@ -52,7 +52,7 @@ const products = [
 ]
 
 // Заглушки-банки в SVG (потом заменишь на реальные фото)
-const ProductImage = ({ name }: { name: string }) => (
+const ProductImage = () => (
   <div style={{
     width: 56, height: 56, borderRadius: 14, flexShrink: 0,
     background: 'linear-gradient(135deg, #1a1a1a, #222)',
@@ -177,7 +177,7 @@ export default function App() {
                 {/* Шапка карточки */}
                 <motion.div whileTap={{ scale: 0.985 }} onClick={() => setSelected(isOpen ? null : p.id)}
                   style={{ padding: '14px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
-                  <ProductImage name={p.name} />
+                  <ProductImage />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 700, fontSize: 16, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
                     <div style={{ color: '#666', fontSize: 12, marginTop: 3 }}>{p.type}</div>
