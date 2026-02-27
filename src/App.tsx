@@ -7,6 +7,12 @@ import eggproteinImg from './assets/eggprotein.png'
 import creatineImg from './assets/creatine.png'
 import gainerImg from './assets/gainer.png'
 import soyproteinImg from './assets/soyprotein.png'
+// Разворачиваем на весь экран
+if (window.Telegram?.WebApp) {
+  window.Telegram.WebApp.expand()
+  window.Telegram.WebApp.setHeaderColor('#07080f')
+  window.Telegram.WebApp.setBackgroundColor('#07080f')
+}
 
 const MANAGER = 'https://t.me/Lockerrrr'
 const BOT_TOKEN = '8649361387:AAHvBO4QPAgfXKuLGt-P_k_pcViyPyESsaY'
