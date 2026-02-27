@@ -12,61 +12,55 @@ const MANAGER = 'https://t.me/Lockerrrr'
 const BOT_TOKEN = '8649361387:AAHvBO4QPAgfXKuLGt-P_k_pcViyPyESsaY'
 const ADMIN_ID = '7220667051'
 
+const BLUE = '#5b9cf6'
+const BLUE_DIM = 'rgba(91,156,246,0.12)'
+const BLUE_BORDER = 'rgba(91,156,246,0.25)'
+
 interface Product {
-  id: number
-  name: string
-  type: string
-  image?: string
+  id: number; name: string; type: string; image?: string
   sizes: { label: string; price: number }[]
-  desc: string
-  composition: string
+  desc: string; composition: string
   reviews: { author: string; text: string; stars: number }[]
 }
 
 const products: Product[] = [
   {
-    id: 1, name: 'КСБ 80', type: 'Сывороточный',
-    image: ksb80Img,
+    id: 1, name: 'КСБ 80', type: 'Сывороточный', image: ksb80Img,
     sizes: [{ label: '1 кг', price: 2990 }, { label: '3 кг', price: 7490 }, { label: '5 кг', price: 11990 }],
     desc: 'Концентрат сывороточного белка 80% на порцию. Идеален после тренировки для быстрого восстановления мышц.',
     composition: 'Концентрат сывороточного белка, какао, ароматизатор, стевия. Белок: 80г/100г. Жиры: 4г. Углеводы: 6г.',
     reviews: [{ author: 'Алексей', text: 'Отличный протеин, размешивается хорошо 🔥', stars: 5 }, { author: 'Марина', text: 'Пью 3 месяца, результат заметен!', stars: 5 }],
   },
   {
-    id: 2, name: 'Казеин', type: 'Казеиновый',
-    image: caseinImg,
+    id: 2, name: 'Казеин', type: 'Казеиновый', image: caseinImg,
     sizes: [{ label: '1 кг', price: 3290 }, { label: '3 кг', price: 8490 }, { label: '5 кг', price: 13490 }],
     desc: 'Медленный протеин на ночь. Питает мышцы 6-8 часов, защищает от катаболизма.',
     composition: 'Мицеллярный казеин, ароматизатор, сукралоза. Белок: 78г/100г. Жиры: 2г. Углеводы: 4г.',
     reviews: [{ author: 'Иван', text: 'Лучший казеин что пробовал!', stars: 5 }, { author: 'Сергей', text: 'Мышцы не теряются даже в дефиците', stars: 5 }],
   },
   {
-    id: 3, name: 'Яичный белок', type: 'Яичный',
-    image: eggproteinImg,
+    id: 3, name: 'Яичный белок', type: 'Яичный', image: eggproteinImg,
     sizes: [{ label: '1 кг', price: 3490 }, { label: '3 кг', price: 8990 }, { label: '5 кг', price: 13990 }],
     desc: 'Протеин из яичного альбумина. Один из самых биодоступных белков. Подходит при непереносимости лактозы.',
     composition: 'Яичный альбумин, ароматизатор, стевия. Белок: 82г/100г. Жиры: 1г. Углеводы: 3г.',
     reviews: [{ author: 'Никита', text: 'Отличное качество, беру постоянно', stars: 5 }, { author: 'Ольга', text: 'Нет лактозы — то что надо!', stars: 5 }],
   },
   {
-    id: 4, name: 'Креатин', type: 'Моногидрат',
-    image: creatineImg,
+    id: 4, name: 'Креатин', type: 'Моногидрат', image: creatineImg,
     sizes: [{ label: '300 г', price: 990 }, { label: '500 г', price: 1490 }, { label: '1 кг', price: 2490 }],
     desc: 'Чистый креатин моногидрат. Увеличивает силу и выносливость в силовых и спринте.',
     composition: 'Креатин моногидрат 100%. Без добавок и красителей.',
     reviews: [{ author: 'Владимир', text: 'Силовые выросли за месяц заметно', stars: 5 }, { author: 'Артём', text: 'Чистый продукт, цена огонь', stars: 5 }],
   },
   {
-    id: 5, name: 'Гейнер', type: 'Белок + углеводы',
-    image: gainerImg,
+    id: 5, name: 'Гейнер', type: 'Белок + углеводы', image: gainerImg,
     sizes: [{ label: '1 кг', price: 2290 }, { label: '3 кг', price: 5990 }, { label: '5 кг', price: 9490 }],
     desc: 'Для быстрого набора мышечной массы. Высококалорийный коктейль с оптимальным соотношением БЖУ.',
     composition: 'Мальтодекстрин, концентрат сывороточного белка, овсяная мука. Белок: 25г/100г. Углеводы: 60г/100г.',
     reviews: [{ author: 'Максим', text: 'За 2 месяца набрал 4 кг!', stars: 5 }, { author: 'Павел', text: 'Хорошо размешивается, не приторный', stars: 4 }],
   },
   {
-    id: 6, name: 'Соевый', type: 'Растительный',
-    image: soyproteinImg,
+    id: 6, name: 'Соевый', type: 'Растительный', image: soyproteinImg,
     sizes: [{ label: '1 кг', price: 2790 }, { label: '3 кг', price: 6990 }, { label: '5 кг', price: 10990 }],
     desc: 'Растительный протеин из сои. Полноценный аминокислотный профиль, подходит для веганов.',
     composition: 'Изолят соевого белка, ароматизатор, стевия. Белок: 85г/100г. Жиры: 1г. Углеводы: 5г.',
@@ -75,31 +69,36 @@ const products: Product[] = [
 ]
 
 const ProductImage = ({ image }: { image?: string }) => (
-  <div style={{
-    width: 56, height: 56, borderRadius: 14, flexShrink: 0,
-    background: '#1a1a1a',
-    border: '1px solid rgba(255,255,255,0.06)',
-    overflow: 'hidden',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-  }}>
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: 'spring', stiffness: 300 }}
+    style={{
+      width: 58, height: 58, borderRadius: 16, flexShrink: 0,
+      background: 'linear-gradient(135deg, #0f1420, #151c2e)',
+      border: `1px solid ${BLUE_BORDER}`,
+      overflow: 'hidden',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: `0 0 20px rgba(91,156,246,0.08)`,
+    }}>
     {image ? (
       <img src={image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     ) : (
-      <svg width="32" height="38" viewBox="0 0 32 38" fill="none">
-        <rect x="6" y="6" width="20" height="28" rx="4" fill="#222"/>
-        <rect x="6" y="6" width="20" height="28" rx="4" stroke="rgba(255,106,0,0.5)" strokeWidth="1"/>
-        <rect x="4" y="4" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
-        <rect x="4" y="28" width="24" height="6" rx="3" fill="#2a2a2a" stroke="rgba(255,106,0,0.4)" strokeWidth="1"/>
-        <rect x="8" y="13" width="16" height="14" rx="2" fill="rgba(255,106,0,0.12)"/>
-        <text x="16" y="22" textAnchor="middle" fill="#ff6a00" fontSize="5" fontWeight="bold" fontFamily="sans-serif">SPL</text>
+      <svg width="28" height="34" viewBox="0 0 32 38" fill="none">
+        <rect x="6" y="6" width="20" height="28" rx="4" fill="#0f1420"/>
+        <rect x="6" y="6" width="20" height="28" rx="4" stroke={BLUE_BORDER} strokeWidth="1.5"/>
+        <rect x="4" y="4" width="24" height="6" rx="3" fill="#151c2e" stroke={BLUE_BORDER} strokeWidth="1"/>
+        <rect x="4" y="28" width="24" height="6" rx="3" fill="#151c2e" stroke={BLUE_BORDER} strokeWidth="1"/>
+        <text x="16" y="22" textAnchor="middle" fill={BLUE} fontSize="5" fontWeight="bold" fontFamily="sans-serif">SPL</text>
       </svg>
     )}
-  </div>
+  </motion.div>
 )
 
 type Tab = 'desc' | 'composition' | 'reviews'
 interface CartItem { productId: number; sizeIdx: number; qty: number }
 interface OrderForm { name: string; city: string; username: string; payment: 'manager' | 'stars' }
+
+const springConfig = { type: 'spring' as const, stiffness: 400, damping: 28 }
 
 export default function App() {
   const [selected, setSelected] = useState<number | null>(null)
@@ -152,30 +151,86 @@ export default function App() {
   }
 
   const inputStyle: React.CSSProperties = {
-    width: '100%', background: '#222', border: '1px solid rgba(255,255,255,0.07)',
+    width: '100%', background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(255,255,255,0.07)',
     borderRadius: 14, padding: '14px 16px', color: '#fff', fontSize: 15,
     marginBottom: 10, boxSizing: 'border-box', outline: 'none',
+    transition: 'border 0.2s',
   }
 
   return (
-    <div style={{ background: '#0d0d0d', minHeight: '100vh', width: '100%', color: '#fff', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif', paddingBottom: 110, overflowX: 'hidden' }}>
+    <div style={{
+      background: '#07080f',
+      minHeight: '100vh', width: '100%', color: '#fff',
+      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+      paddingBottom: 120, overflowX: 'hidden',
+    }}>
 
       {/* ── HEADER ── */}
-      <div style={{ width: '100%', padding: '20px 20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        style={{
+          width: '100%', padding: '24px 20px 20px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          borderBottom: '1px solid rgba(255,255,255,0.04)',
+          backdropFilter: 'blur(20px)',
+          background: 'rgba(7,8,15,0.8)',
+          position: 'sticky', top: 0, zIndex: 10,
+        }}>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 900, letterSpacing: 1, color: '#fff' }}>SPLINTEL</div>
-          <div style={{ fontSize: 11, color: '#ff6a00', fontWeight: 600, letterSpacing: 2, marginTop: 1 }}>SPORT NUTRITION</div>
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            style={{ fontSize: 22, fontWeight: 900, letterSpacing: 3, color: '#fff' }}>
+            SPLINTEL
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            style={{ fontSize: 10, color: BLUE, fontWeight: 500, letterSpacing: 3, marginTop: 2, opacity: 0.8 }}>
+            SPORT NUTRITION
+          </motion.div>
         </div>
-        <div style={{ display: 'flex', gap: 6 }}>
+        <motion.div
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.15 }}
+          style={{ display: 'flex', gap: 6 }}>
           {['Качество', 'Доставка РФ'].map((t, i) => (
-            <span key={i} style={{ background: 'rgba(255,106,0,0.1)', border: '1px solid rgba(255,106,0,0.2)', color: '#ff8c42', padding: '4px 10px', borderRadius: 20, fontSize: 10, fontWeight: 600 }}>{t}</span>
+            <span key={i} style={{
+              background: BLUE_DIM,
+              border: `1px solid ${BLUE_BORDER}`,
+              color: '#7db5ff', padding: '4px 10px',
+              borderRadius: 20, fontSize: 10, fontWeight: 600,
+            }}>{t}</span>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
+
+      {/* ── HERO LINE ── */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
+        style={{
+          height: 1, background: `linear-gradient(90deg, transparent, ${BLUE}, transparent)`,
+          transformOrigin: 'left',
+        }}
+      />
 
       {/* ── КАТАЛОГ ── */}
-      <div style={{ padding: '20px 16px 0' }}>
-        <p style={{ color: '#444', fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 12px' }}>Каталог товаров</p>
+      <div style={{ padding: '28px 16px 0' }}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          style={{ color: '#333', fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', margin: '0 0 16px' }}>
+          Каталог
+        </motion.p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {products.map((p, i) => {
@@ -187,38 +242,54 @@ export default function App() {
 
             return (
               <motion.div key={p.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.07, type: 'spring', stiffness: 200, damping: 20 }}
                 style={{
-                  background: '#1a1a1a',
-                  borderRadius: 18,
+                  background: isOpen
+                    ? 'linear-gradient(135deg, #0e1220, #0c1018)'
+                    : 'linear-gradient(135deg, #0c0d14, #0a0b11)',
+                  borderRadius: 20,
                   overflow: 'hidden',
-                  border: isOpen ? '1px solid rgba(255,106,0,0.35)' : '1px solid rgba(255,255,255,0.05)',
-                  boxShadow: isOpen ? '0 0 24px rgba(255,106,0,0.12)' : 'none',
-                  transition: 'border 0.25s, box-shadow 0.25s',
+                  border: isOpen
+                    ? `1px solid ${BLUE_BORDER}`
+                    : '1px solid rgba(255,255,255,0.04)',
+                  boxShadow: isOpen
+                    ? `0 0 40px rgba(91,156,246,0.08), inset 0 1px 0 rgba(91,156,246,0.06)`
+                    : '0 2px 12px rgba(0,0,0,0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}>
 
                 {/* Шапка карточки */}
-                <motion.div whileTap={{ scale: 0.985 }} onClick={() => setSelected(isOpen ? null : p.id)}
-                  style={{ padding: '14px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <motion.div
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setSelected(isOpen ? null : p.id)}
+                  style={{ padding: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 14 }}>
                   <ProductImage image={p.image} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
-                      fontWeight: 700, fontSize: 15, color: '#fff',
+                      fontWeight: 700, fontSize: 15, color: '#f0f4ff',
                       overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      letterSpacing: 0.3,
                     }}>{p.name}</div>
                     <div style={{
-                      color: '#666', fontSize: 11, marginTop: 2,
+                      color: '#3d4a6a', fontSize: 11, marginTop: 3, fontWeight: 500,
                       overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      letterSpacing: 0.5,
                     }}>{p.type}</div>
                   </div>
                   <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 4 }}>
-                    <div style={{ fontWeight: 800, fontSize: 16, color: '#ff6a00' }}>{currentSize.price}₽</div>
-                    <div style={{ color: '#555', fontSize: 11, marginTop: 2 }}>{currentSize.label}</div>
+                    <div style={{ fontWeight: 800, fontSize: 16, color: BLUE }}>{currentSize.price}₽</div>
+                    <div style={{ color: '#2a3550', fontSize: 11, marginTop: 2 }}>{currentSize.label}</div>
                   </div>
-                  <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}
-                    style={{ color: '#555', fontSize: 10, marginLeft: 2, flexShrink: 0 }}>▼</motion.span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    style={{ marginLeft: 4, flexShrink: 0 }}>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 5L7 9L11 5" stroke={isOpen ? BLUE : '#2a3550'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.div>
                 </motion.div>
 
                 {/* Раскрытая часть */}
@@ -228,62 +299,88 @@ export default function App() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22 }}
+                      transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
                       style={{ overflow: 'hidden' }}>
-                      <div style={{ padding: '0 16px 16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ padding: '0 16px 18px', borderTop: '1px solid rgba(91,156,246,0.07)' }}>
 
                         {/* Фасовки */}
-                        <div style={{ display: 'flex', gap: 8, marginTop: 14, marginBottom: 14 }}>
+                        <div style={{ display: 'flex', gap: 8, marginTop: 16, marginBottom: 16 }}>
                           {p.sizes.map((s, idx) => (
-                            <motion.button key={idx} whileTap={{ scale: 0.95 }}
+                            <motion.button key={idx}
+                              whileTap={{ scale: 0.94 }}
+                              whileHover={{ scale: 1.02 }}
                               onClick={() => setSizes(prev => ({ ...prev, [p.id]: idx }))}
                               style={{
                                 flex: 1, padding: '10px 4px', borderRadius: 12, border: 'none', cursor: 'pointer',
-                                background: sizeIdx === idx ? '#ff6a00' : '#2c2c2c',
-                                color: sizeIdx === idx ? '#000' : '#fff',
+                                background: sizeIdx === idx
+                                  ? `linear-gradient(135deg, ${BLUE}, #3b7de8)`
+                                  : 'rgba(255,255,255,0.04)',
+                                color: sizeIdx === idx ? '#fff' : '#3d4a6a',
                                 fontWeight: 700, fontSize: 12, lineHeight: 1.5,
                                 transition: 'all 0.2s',
+                                boxShadow: sizeIdx === idx ? `0 4px 16px rgba(91,156,246,0.3)` : 'none',
                               }}>
                               {s.label}<br />
-                              <span style={{ fontSize: 11, fontWeight: 500, opacity: 0.8 }}>{s.price}₽</span>
+                              <span style={{ fontSize: 11, fontWeight: 500, opacity: 0.85 }}>{s.price}₽</span>
                             </motion.button>
                           ))}
                         </div>
 
                         {/* Табы */}
-                        <div style={{ display: 'flex', background: '#111', borderRadius: 12, padding: 3, marginBottom: 14 }}>
+                        <div style={{
+                          display: 'flex', background: 'rgba(255,255,255,0.03)',
+                          borderRadius: 12, padding: 3, marginBottom: 16,
+                          border: '1px solid rgba(255,255,255,0.04)',
+                        }}>
                           {(['desc', 'composition', 'reviews'] as Tab[]).map(t => (
-                            <button key={t} onClick={() => setTabs(prev => ({ ...prev, [p.id]: t }))}
+                            <motion.button key={t}
+                              whileTap={{ scale: 0.97 }}
+                              onClick={() => setTabs(prev => ({ ...prev, [p.id]: t }))}
                               style={{
                                 flex: 1, padding: '8px 4px', borderRadius: 9, border: 'none', cursor: 'pointer',
-                                fontSize: 11, fontWeight: 700,
-                                background: tab === t ? '#2a2a2a' : 'transparent',
-                                color: tab === t ? '#fff' : '#555',
-                                transition: 'all 0.15s',
+                                fontSize: 11, fontWeight: 600, letterSpacing: 0.3,
+                                background: tab === t ? BLUE_DIM : 'transparent',
+                                color: tab === t ? BLUE : '#2a3550',
+                                transition: 'all 0.2s',
+                                boxShadow: tab === t ? `inset 0 0 0 1px ${BLUE_BORDER}` : 'none',
                               }}>
                               {t === 'desc' ? 'Описание' : t === 'composition' ? 'Состав' : 'Отзывы'}
-                            </button>
+                            </motion.button>
                           ))}
                         </div>
 
-                        {/* Контент */}
+                        {/* Контент таба */}
                         <AnimatePresence mode="wait">
                           <motion.div key={tab}
-                            initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                            transition={{ duration: 0.15 }}
-                            style={{ minHeight: 64, marginBottom: 16 }}>
-                            {tab === 'desc' && <p style={{ color: '#aaa', fontSize: 14, margin: 0, lineHeight: 1.7 }}>{p.desc}</p>}
-                            {tab === 'composition' && <p style={{ color: '#aaa', fontSize: 14, margin: 0, lineHeight: 1.7 }}>{p.composition}</p>}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.18 }}
+                            style={{ minHeight: 64, marginBottom: 18 }}>
+                            {tab === 'desc' && (
+                              <p style={{ color: '#5a6a8a', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.desc}</p>
+                            )}
+                            {tab === 'composition' && (
+                              <p style={{ color: '#5a6a8a', fontSize: 14, margin: 0, lineHeight: 1.75 }}>{p.composition}</p>
+                            )}
                             {tab === 'reviews' && (
                               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {p.reviews.map((r, idx) => (
-                                  <div key={idx} style={{ background: '#111', borderRadius: 12, padding: '12px 14px', border: '1px solid rgba(255,255,255,0.04)' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
-                                      <span style={{ fontWeight: 700, fontSize: 13, color: '#fff' }}>{r.author}</span>
-                                      <span style={{ fontSize: 11, color: '#ff6a00' }}>{'★'.repeat(r.stars)}</span>
+                                  <motion.div key={idx}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.08 }}
+                                    style={{
+                                      background: 'rgba(255,255,255,0.02)',
+                                      borderRadius: 12, padding: '12px 14px',
+                                      border: '1px solid rgba(255,255,255,0.04)',
+                                    }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                                      <span style={{ fontWeight: 700, fontSize: 13, color: '#c8d8f0' }}>{r.author}</span>
+                                      <span style={{ fontSize: 11, color: BLUE, letterSpacing: 1 }}>{'★'.repeat(r.stars)}</span>
                                     </div>
-                                    <p style={{ color: '#888', fontSize: 13, margin: 0, lineHeight: 1.5 }}>{r.text}</p>
-                                  </div>
+                                    <p style={{ color: '#4a5a7a', fontSize: 13, margin: 0, lineHeight: 1.6 }}>{r.text}</p>
+                                  </motion.div>
                                 ))}
                               </div>
                             )}
@@ -292,31 +389,69 @@ export default function App() {
 
                         {/* Кнопки */}
                         <div style={{ display: 'flex', gap: 10 }}>
-                          {cartItem ? (
-                            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#111', borderRadius: 14, padding: '10px 18px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                              <motion.button whileTap={{ scale: 0.9 }} onClick={() => changeQty(p.id, sizeIdx, -1)}
-                                style={{ background: '#ff6a00', border: 'none', color: '#000', width: 32, height: 32, borderRadius: 10, fontSize: 18, cursor: 'pointer', fontWeight: 900 }}>−</motion.button>
-                              <span style={{ fontWeight: 800, fontSize: 16 }}>{cartItem.qty}</span>
-                              <motion.button whileTap={{ scale: 0.9 }} onClick={() => changeQty(p.id, sizeIdx, 1)}
-                                style={{ background: '#ff6a00', border: 'none', color: '#000', width: 32, height: 32, borderRadius: 10, fontSize: 18, cursor: 'pointer', fontWeight: 900 }}>+</motion.button>
-                            </div>
-                          ) : (
-                            <motion.button whileTap={{ scale: 0.97 }} onClick={() => addToCart(p.id, sizeIdx)}
-                              style={{
-                                flex: 1, padding: '14px', borderRadius: 14, border: 'none', cursor: 'pointer',
-                                background: '#ff6a00', color: '#000',
-                                fontWeight: 800, fontSize: 15,
-                                boxShadow: '0 4px 20px rgba(255,106,0,0.35)',
-                              }}>
-                              В корзину
-                            </motion.button>
-                          )}
-                          <a href={MANAGER}
+                          <AnimatePresence mode="wait">
+                            {cartItem ? (
+                              <motion.div key="qty"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={springConfig}
+                                style={{
+                                  flex: 1, display: 'flex', alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                  background: BLUE_DIM,
+                                  borderRadius: 14, padding: '10px 18px',
+                                  border: `1px solid ${BLUE_BORDER}`,
+                                }}>
+                                <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(p.id, sizeIdx, -1)}
+                                  style={{
+                                    background: 'rgba(91,156,246,0.2)', border: 'none', color: BLUE,
+                                    width: 32, height: 32, borderRadius: 10, fontSize: 18,
+                                    cursor: 'pointer', fontWeight: 900,
+                                  }}>−</motion.button>
+                                <motion.span
+                                  key={cartItem.qty}
+                                  initial={{ scale: 1.3, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  style={{ fontWeight: 800, fontSize: 16, color: '#fff' }}>
+                                  {cartItem.qty}
+                                </motion.span>
+                                <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(p.id, sizeIdx, 1)}
+                                  style={{
+                                    background: BLUE, border: 'none', color: '#fff',
+                                    width: 32, height: 32, borderRadius: 10, fontSize: 18,
+                                    cursor: 'pointer', fontWeight: 900,
+                                  }}>+</motion.button>
+                              </motion.div>
+                            ) : (
+                              <motion.button key="add"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                whileTap={{ scale: 0.96 }}
+                                whileHover={{ scale: 1.01 }}
+                                transition={springConfig}
+                                onClick={() => addToCart(p.id, sizeIdx)}
+                                style={{
+                                  flex: 1, padding: '14px', borderRadius: 14, border: 'none', cursor: 'pointer',
+                                  background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
+                                  color: '#fff', fontWeight: 700, fontSize: 14, letterSpacing: 0.5,
+                                  boxShadow: `0 6px 24px rgba(91,156,246,0.28)`,
+                                }}>
+                                В корзину
+                              </motion.button>
+                            )}
+                          </AnimatePresence>
+                          <motion.a
+                            whileTap={{ scale: 0.92 }}
+                            href={MANAGER}
                             style={{
-                              width: 52, borderRadius: 14, background: '#222', border: '1px solid rgba(255,255,255,0.06)',
+                              width: 52, borderRadius: 14,
+                              background: 'rgba(255,255,255,0.03)',
+                              border: '1px solid rgba(255,255,255,0.06)',
                               textDecoration: 'none', fontSize: 20,
                               display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                            }}>💬</a>
+                            }}>💬</motion.a>
                         </div>
                       </div>
                     </motion.div>
@@ -332,19 +467,40 @@ export default function App() {
       <AnimatePresence>
         {cartCount > 0 && (
           <motion.button
-            initial={{ y: 120, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 120, opacity: 0 }}
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={springConfig}
             whileTap={{ scale: 0.97 }}
             onClick={() => { setShowCart(true); setSent(false); setForm({ name: '', city: '', username: '', payment: 'manager' }) }}
             style={{
               position: 'fixed', bottom: 20, left: 16, right: 16,
-              background: '#ff6a00', color: '#000',
-              border: 'none', padding: '17px 24px', borderRadius: 16,
-              fontWeight: 900, fontSize: 16, cursor: 'pointer', zIndex: 50,
-              boxShadow: '0 8px 32px rgba(255,106,0,0.45)',
+              background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
+              color: '#fff', border: 'none', padding: '18px 24px', borderRadius: 18,
+              fontWeight: 700, fontSize: 15, cursor: 'pointer', zIndex: 50,
+              boxShadow: `0 8px 40px rgba(91,156,246,0.35)`,
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              letterSpacing: 0.3,
             }}>
-            <span>🛒 Корзина · {cartCount} шт</span>
-            <span>{cartTotal}₽</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <motion.span
+                key={cartCount}
+                initial={{ scale: 1.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={springConfig}
+                style={{
+                  background: 'rgba(255,255,255,0.2)', borderRadius: 8,
+                  padding: '2px 8px', fontSize: 13, fontWeight: 800,
+                }}>{cartCount}</motion.span>
+              товара в корзине
+            </span>
+            <motion.span
+              key={cartTotal}
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              style={{ fontWeight: 800, fontSize: 16 }}>
+              {cartTotal}₽
+            </motion.span>
           </motion.button>
         )}
       </AnimatePresence>
@@ -352,99 +508,162 @@ export default function App() {
       {/* ── МОДАЛКА КОРЗИНЫ ── */}
       <AnimatePresence>
         {showCart && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 100, display: 'flex', alignItems: 'flex-end' }}
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
+              zIndex: 100, display: 'flex', alignItems: 'flex-end',
+              backdropFilter: 'blur(6px)',
+            }}
             onClick={e => e.target === e.currentTarget && setShowCart(false)}>
             <motion.div
               initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              style={{ background: '#111', borderRadius: '24px 24px 0 0', width: '100%', maxHeight: '92vh', overflowY: 'auto' }}>
+              transition={{ type: 'spring', damping: 32, stiffness: 320 }}
+              style={{
+                background: 'linear-gradient(180deg, #0d0f1a 0%, #07080f 100%)',
+                borderRadius: '28px 28px 0 0',
+                width: '100%', maxHeight: '92vh', overflowY: 'auto',
+                border: `1px solid ${BLUE_BORDER}`,
+                borderBottom: 'none',
+              }}>
 
-              <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 10, paddingBottom: 6 }}>
-                <div style={{ width: 36, height: 4, background: '#2a2a2a', borderRadius: 2 }} />
+              {/* Ручка */}
+              <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, paddingBottom: 8 }}>
+                <div style={{ width: 36, height: 4, background: 'rgba(91,156,246,0.2)', borderRadius: 2 }} />
               </div>
 
-              <div style={{ padding: '8px 20px 48px' }}>
+              <div style={{ padding: '8px 20px 52px' }}>
                 {sent ? (
-                  <div style={{ textAlign: 'center', padding: '48px 0' }}>
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 200 }}
-                      style={{ fontSize: 64, marginBottom: 18 }}>✅</motion.div>
-                    <h2 style={{ margin: '0 0 10px', fontSize: 22, fontWeight: 900 }}>Заказ принят!</h2>
-                    <p style={{ color: '#666', fontSize: 14, lineHeight: 1.7, margin: '0 0 28px' }}>Менеджер свяжется с тобой в Telegram в ближайшее время</p>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{ textAlign: 'center', padding: '52px 0' }}>
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ type: 'spring', stiffness: 180, damping: 14 }}
+                      style={{ fontSize: 64, marginBottom: 20 }}>✅</motion.div>
+                    <h2 style={{ margin: '0 0 10px', fontSize: 22, fontWeight: 800, color: '#f0f4ff' }}>Заказ принят</h2>
+                    <p style={{ color: '#3d4a6a', fontSize: 14, lineHeight: 1.7, margin: '0 0 32px' }}>Менеджер свяжется с тобой в Telegram в ближайшее время</p>
                     <motion.button whileTap={{ scale: 0.97 }} onClick={() => setShowCart(false)}
-                      style={{ background: '#ff6a00', color: '#000', border: 'none', padding: '15px 48px', borderRadius: 14, fontWeight: 800, fontSize: 16, cursor: 'pointer', boxShadow: '0 4px 20px rgba(255,106,0,0.35)' }}>
+                      style={{
+                        background: `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
+                        color: '#fff', border: 'none', padding: '15px 48px',
+                        borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer',
+                        boxShadow: `0 4px 20px rgba(91,156,246,0.3)`,
+                      }}>
                       Закрыть
                     </motion.button>
-                  </div>
+                  </motion.div>
                 ) : (
                   <>
-                    <h2 style={{ margin: '0 0 18px', fontSize: 20, fontWeight: 900 }}>Корзина</h2>
+                    <h2 style={{ margin: '0 0 20px', fontSize: 20, fontWeight: 800, color: '#f0f4ff', letterSpacing: 0.3 }}>Корзина</h2>
 
+                    {/* Товары */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
-                      {cart.map(item => {
+                      {cart.map((item, idx) => {
                         const p = products.find(x => x.id === item.productId)!
                         const size = p.sizes[item.sizeIdx]
                         return (
-                          <div key={`${item.productId}-${item.sizeIdx}`}
-                            style={{ background: '#1a1a1a', borderRadius: 14, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, border: '1px solid rgba(255,255,255,0.05)' }}>
+                          <motion.div key={`${item.productId}-${item.sizeIdx}`}
+                            initial={{ opacity: 0, x: -16 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.06 }}
+                            style={{
+                              background: 'rgba(255,255,255,0.02)', borderRadius: 16,
+                              padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12,
+                              border: '1px solid rgba(255,255,255,0.04)',
+                            }}>
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontWeight: 700, fontSize: 14 }}>{p.name}</div>
-                              <div style={{ color: '#555', fontSize: 12, marginTop: 2 }}>{size.label}</div>
+                              <div style={{ fontWeight: 700, fontSize: 14, color: '#d0dcf0' }}>{p.name}</div>
+                              <div style={{ color: '#2a3550', fontSize: 12, marginTop: 2 }}>{size.label}</div>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <motion.button whileTap={{ scale: 0.9 }} onClick={() => changeQty(item.productId, item.sizeIdx, -1)}
-                                style={{ background: '#2c2c2c', border: 'none', color: '#fff', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>−</motion.button>
-                              <span style={{ fontWeight: 800, fontSize: 14, minWidth: 16, textAlign: 'center' }}>{item.qty}</span>
-                              <motion.button whileTap={{ scale: 0.9 }} onClick={() => changeQty(item.productId, item.sizeIdx, 1)}
-                                style={{ background: '#ff6a00', border: 'none', color: '#000', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>+</motion.button>
+                              <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(item.productId, item.sizeIdx, -1)}
+                                style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: '#aaa', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>−</motion.button>
+                              <span style={{ fontWeight: 800, fontSize: 14, minWidth: 16, textAlign: 'center', color: '#fff' }}>{item.qty}</span>
+                              <motion.button whileTap={{ scale: 0.85 }} onClick={() => changeQty(item.productId, item.sizeIdx, 1)}
+                                style={{ background: BLUE, border: 'none', color: '#fff', width: 28, height: 28, borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 900 }}>+</motion.button>
                             </div>
-                            <span style={{ fontWeight: 800, fontSize: 14, color: '#ff6a00', minWidth: 64, textAlign: 'right' }}>{size.price * item.qty}₽</span>
-                          </div>
+                            <span style={{ fontWeight: 800, fontSize: 14, color: BLUE, minWidth: 64, textAlign: 'right' }}>{size.price * item.qty}₽</span>
+                          </motion.div>
                         )
                       })}
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 0', borderTop: '1px solid rgba(255,255,255,0.06)', marginBottom: 18 }}>
-                      <span style={{ color: '#888', fontSize: 15 }}>Итого</span>
-                      <span style={{ fontWeight: 900, fontSize: 22, color: '#ff6a00' }}>{cartTotal}₽</span>
-                    </div>
-
-                    <input value={form.name} onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="Твоё имя" style={inputStyle} />
-                    <input value={form.city} onChange={e => setForm(prev => ({ ...prev, city: e.target.value }))}
-                      placeholder="Город доставки" style={inputStyle} />
-                    <input value={form.username} onChange={e => setForm(prev => ({ ...prev, username: e.target.value }))}
-                      placeholder="Username в Telegram (без @)" style={{ ...inputStyle, marginBottom: 16 }} />
-
-                    <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(prev => ({ ...prev, payment: 'manager' }))}
-                        style={{
-                          flex: 1, padding: '13px 8px', borderRadius: 14,
-                          border: form.payment === 'manager' ? '1.5px solid #ff6a00' : '1px solid rgba(255,255,255,0.07)',
-                          cursor: 'pointer', fontWeight: 700, fontSize: 12, lineHeight: 1.6,
-                          background: form.payment === 'manager' ? 'rgba(255,106,0,0.12)' : '#1a1a1a',
-                          color: form.payment === 'manager' ? '#ff6a00' : '#555',
-                        }}>
-                        💳 Через менеджера<br /><span style={{ fontSize: 11 }}>{cartTotal}₽</span>
-                      </motion.button>
-                      <motion.button whileTap={{ scale: 0.97 }} onClick={() => setForm(prev => ({ ...prev, payment: 'stars' }))}
-                        style={{
-                          flex: 1, padding: '13px 8px', borderRadius: 14,
-                          border: form.payment === 'stars' ? '1.5px solid #a78bfa' : '1px solid rgba(255,255,255,0.07)',
-                          cursor: 'pointer', fontWeight: 700, fontSize: 12, lineHeight: 1.6,
-                          background: form.payment === 'stars' ? 'rgba(124,58,237,0.15)' : '#1a1a1a',
-                          color: form.payment === 'stars' ? '#a78bfa' : '#555',
-                        }}>
-                        ⭐ Telegram Stars<br /><span style={{ fontSize: 11 }}>{starsPrice(cartTotal)} Stars</span>
-                      </motion.button>
-                    </div>
-
-                    <motion.button whileTap={{ scale: 0.98 }} onClick={sendOrder} disabled={loading}
+                    {/* Итого */}
+                    <motion.div
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
                       style={{
-                        width: '100%', background: loading ? '#222' : '#ff6a00',
-                        color: loading ? '#555' : '#000', border: 'none', padding: '17px',
-                        borderRadius: 14, fontWeight: 900, fontSize: 17, cursor: 'pointer',
-                        boxShadow: loading ? 'none' : '0 6px 24px rgba(255,106,0,0.4)',
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        padding: '16px 0', borderTop: `1px solid rgba(91,156,246,0.08)`, marginBottom: 20,
+                      }}>
+                      <span style={{ color: '#3d4a6a', fontSize: 14, fontWeight: 500 }}>Итого</span>
+                      <motion.span
+                        key={cartTotal}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        style={{ fontWeight: 900, fontSize: 24, color: BLUE }}>
+                        {cartTotal}₽
+                      </motion.span>
+                    </motion.div>
+
+                    {/* Форма */}
+                    {[
+                      { key: 'name', placeholder: 'Твоё имя' },
+                      { key: 'city', placeholder: 'Город доставки' },
+                      { key: 'username', placeholder: 'Username в Telegram (без @)' },
+                    ].map(({ key, placeholder }, idx) => (
+                      <motion.input
+                        key={key}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 + idx * 0.06 }}
+                        value={form[key as keyof OrderForm] as string}
+                        onChange={e => setForm(prev => ({ ...prev, [key]: e.target.value }))}
+                        placeholder={placeholder}
+                        style={{ ...inputStyle, marginBottom: key === 'username' ? 16 : 10 }}
+                      />
+                    ))}
+
+                    {/* Оплата */}
+                    <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
+                      {[
+                        { key: 'manager', label: '💳 Менеджер', sub: `${cartTotal}₽`, active: form.payment === 'manager', color: BLUE, bg: BLUE_DIM, border: BLUE_BORDER },
+                        { key: 'stars', label: '⭐ Stars', sub: `${starsPrice(cartTotal)} ⭐`, active: form.payment === 'stars', color: '#a78bfa', bg: 'rgba(124,58,237,0.12)', border: 'rgba(167,139,250,0.3)' },
+                      ].map(opt => (
+                        <motion.button key={opt.key}
+                          whileTap={{ scale: 0.96 }}
+                          onClick={() => setForm(prev => ({ ...prev, payment: opt.key as 'manager' | 'stars' }))}
+                          style={{
+                            flex: 1, padding: '13px 8px', borderRadius: 14, cursor: 'pointer',
+                            border: opt.active ? `1.5px solid ${opt.border}` : '1px solid rgba(255,255,255,0.05)',
+                            fontWeight: 700, fontSize: 13, lineHeight: 1.6,
+                            background: opt.active ? opt.bg : 'rgba(255,255,255,0.02)',
+                            color: opt.active ? opt.color : '#2a3550',
+                            transition: 'all 0.2s',
+                          }}>
+                          {opt.label}<br /><span style={{ fontSize: 11, fontWeight: 500 }}>{opt.sub}</span>
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.01 }}
+                      onClick={sendOrder}
+                      disabled={loading}
+                      style={{
+                        width: '100%',
+                        background: loading ? 'rgba(255,255,255,0.04)' : `linear-gradient(135deg, ${BLUE}, #3b7de8)`,
+                        color: loading ? '#2a3550' : '#fff',
+                        border: 'none', padding: '18px',
+                        borderRadius: 16, fontWeight: 700, fontSize: 16,
+                        cursor: loading ? 'default' : 'pointer',
+                        letterSpacing: 0.4,
+                        boxShadow: loading ? 'none' : `0 8px 32px rgba(91,156,246,0.32)`,
+                        transition: 'all 0.3s',
                       }}>
                       {loading ? 'Отправка...' : 'Оформить заказ →'}
                     </motion.button>
